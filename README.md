@@ -184,6 +184,11 @@ std::sort(S,S+n,compare);
 
 - 인접행렬(adjacency matrix)
 	> 2차원 베열을 이용한다. 최대 정점의 수에 맞추어 2차원 배열 선언하고 각 ㅐ열의 칸에 연결된 정보 저장.
+	
+- - O(nm) 시간
+
+
+![](http://cfile29.uf.tistory.com/image/24227840571C79650EEC39)
 
 ```cpp
 #include <stdio.h>
@@ -201,4 +206,144 @@ int main(){
 }
 ```
 
+
+
 - 인접리스트(adjacency list)
+
+인접행렬은 표현할 때 연결되지 않았던 부분까지 모두 표현이 된다. 연결되지 않은 부분을 0으로 표현한다. 알고리즘을 구현할 때에도 0까지 모두 조사를 해야하므로 효울이 떨어지는 경우가 많은데 인접리스트는 이러한 단점을 극복한다.
+
+-	- O(n+m)시간
+
+![](https://lh3.googleusercontent.com/22poilDCWxVN7yT5qhzxdzrw8en-V9qGjiTULqjtzDisaVWc4GdhtDOoVw1EP8Dcs2wcYF8WRBH1jEdnbm9HeDMsrCxOMWWCWzpm_zy6AnU3qD4Gk_aa76mul81GkqqS0hphsA)
+
+`std::vector()`를 이용하여 간단하게 구현할 수 있다. 이때 인접행렬로 구현하는 것보다 공간을 적게 사용한다.
+
+#### 깊이우선탐색(dfs)
+
+그래프 중 회로가 없는 그래프를 트리라고한다.
+
+1. 출발 정점을 트리의 가장 위에 있는 정점으로 한다.
+2. 단계별 탐색을 한다.
+3. 더 이상 진행할 수 없을 때는 백트랙(backtrack)-이전의 정점으로 되돌아간다.
+4. 마지막 정점을 방문하면 깊이우선탐색이 완료된다.
+
+```cpp
+//인접리스트 백트랙킹 기법
+//반복문 m번실행
+bool visited[101];
+void dfs(int k)
+{
+	for(int i=0;i<G[i].size();i++)
+	    if(!visited[G[k][i],to])
+        {
+        	visited[G[k][i].to]=true;
+            dfs(G[k][i]);
+        }
+    return;
+}
+```
+
+```cpp
+//인접행렬 백트릭킹 기법
+//반복문 n^2번 실행
+bool visited[101];
+void dfs(int k)
+{
+	for(int i=0;i<=n;i++)
+	    if(G[k][i] && !visited[G[k][i]])
+        {
+        	visited[G[k][i]]=true;
+            dfs(G[k][i]);
+        }
+    return;
+}
+```
+
+##### flood_fill
+
+지뢰찾기, 뿌요뿌요 등 게임에서 많이 활용되는 알고리즘.
+재귀함수를 이용해 깊이우선탐색을 구현한다. 하지만 재귀의 깊이가 너무 커지면 runtime error가 발생할 수 있다. 깊이가 너무 크다고 판단되면 너비우선탐색으로 처리하거나 재귀대신 스택을 이용한다.
+
+dfs함수 부분의 4방향 탐색을 dx,dy를 이용해 작성할 수 있다.
+
+```cpp
+int dx[4]={1,0,-1,0},dy[4]={0,1,0,-1};
+
+void dfs(int a, int b, int c)
+{
+	A[a][b]=c;
+    for(int i=0;i<4;i++)
+    	if(safe(a+dx[i],b+dy[i])&&A[a+dx[i]][b+dy[i]]==1)
+        	dfs(a+dx[i],b+dy[i],c);
+}
+```
+
+##### n-queen
+
+n*n체스 보드판에 n개의 queen을 서로 공격하지 못하도록 배치하는 방법을 찾아내는 문제. 대각선 검사하면서 가야하는 알고리즘에 유용하다.
+
+- 퀸은 8방향으로 모두 공격할 수 있다.
+
+
+	1. 첫 번째 행, 첫 번째 열에 퀸을 놓는다.
+	2. 다음 행에서 가능한 가장 왼쪽 열에 퀸을 놓는다.
+	3. n번째 열에 더 이상 퀸을 놓을 수 없다면 백트랙한다.
+	4. 마지막 행에 퀸을 놓으면 하나의 해를 구한 것이다.
+	5. 모든 경우를 조사할 때까지 백트래킹해가며 해들을 구한다.
+
+깊이우선탐색을 하며 해를 구할 때마다 카운트해 원하는 해를 구할 수 있다. 열과 대각선만 검사하면 된다.
+대각선은 행+열 위치에 체크해 기울기가 증가하는 대각선 상에 퀸을 놓을 수 있는지 없는지 확인한다.
+기울기가 감소하는 대각선은 **행과 열의 차가 일정**하다. `n+(행-열)`의 위치에 체크.
+백트랙 시에 가장 중요한 점은 체크배열에 기록해 두었던 체크를 모두 해제해야한다.
+
+#### 너비우선탐색(bfs)
+
+핸져 정점에서 깊이가 1인 정점을 모두 탐색한 뒤 깊이를 늘려가는 방식이다. 너비우선탐색은 백트랙을 하지 않는다. 대신에 현재 정점에서 깊이가 1인 정점을 모두 방문해야하므로 **큐(queue)**라는 FIFO(First In First Out)자료구조를 활용해 현재 정점에서 깊이가 1 더 깊은 모든 정점을 순차적으로 큐에 저장해 탐색에 활용한다.
+
+`std::queue()`를 활용하는 방법을 익힐 필요가 있다.
+
+```cpp
+//인접리스트에 저장했을 경우
+#include <queue>
+bool visited[101];
+
+void bfs(int k)
+{
+	std::queue<int> Q;
+    Q.push(k), visited[k]=1;
+    while(!Q.empty())
+    {
+    	int current = Q.front();Q.pop();
+        for(int i=0;i<G[current].size();i++)
+        	if(!vistited[G[current][i]])
+            {
+            	visited[G[current][i]]=1;
+                Q.push(G[current][i]);
+            }
+    }
+}
+```
+전체를 탐색하는 데 있어서 반복문을 m번 실행하게 된다.
+
+```cpp
+//인접행렬
+bool visited[101];
+
+void bfs(int k)
+{
+	std::queue<int> Q;
+    Q.push(k), visited[k]=1;
+    while(!Q.empty())
+    {
+    	int current = Q.front();Q.pop();
+        for(int i=0;i<G[current].size();i++)
+        	if(G[current][i]&&!vistited[G[current][i]])
+            {
+            	visited[G[current][i]]=1;
+                Q.push(G[current][i]);
+            }
+    }
+}
+```
+
+전체 탐색하는데 있어서 반복문을 n^2번 실행하게된다.
