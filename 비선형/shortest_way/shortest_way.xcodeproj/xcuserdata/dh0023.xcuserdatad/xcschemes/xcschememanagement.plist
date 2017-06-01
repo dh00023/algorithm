@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>flood_fill.xcscheme</key>
+		<key>shortest_way.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>7D03648E1EE0249D009E5051</key>
+		<key>7D0364A11EE02867009E5051</key>
 		<dict>
 			<key>primary</key>
 			<true/>

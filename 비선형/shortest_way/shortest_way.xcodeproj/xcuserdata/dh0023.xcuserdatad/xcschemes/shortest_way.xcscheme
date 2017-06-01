@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7D787EB61EDEFF57003BBD98"
-               BuildableName = "nonlinear_structure"
-               BlueprintName = "nonlinear_structure"
-               ReferencedContainer = "container:nonlinear_structure.xcodeproj">
+               BlueprintIdentifier = "7D0364A11EE02867009E5051"
+               BuildableName = "shortest_way"
+               BlueprintName = "shortest_way"
+               ReferencedContainer = "container:shortest_way.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7D787EB61EDEFF57003BBD98"
-            BuildableName = "nonlinear_structure"
-            BlueprintName = "nonlinear_structure"
-            ReferencedContainer = "container:nonlinear_structure.xcodeproj">
+            BlueprintIdentifier = "7D0364A11EE02867009E5051"
+            BuildableName = "shortest_way"
+            BlueprintName = "shortest_way"
+            ReferencedContainer = "container:shortest_way.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7D787EB61EDEFF57003BBD98"
-            BuildableName = "nonlinear_structure"
-            BlueprintName = "nonlinear_structure"
-            ReferencedContainer = "container:nonlinear_structure.xcodeproj">
+            BlueprintIdentifier = "7D0364A11EE02867009E5051"
+            BuildableName = "shortest_way"
+            BlueprintName = "shortest_way"
+            ReferencedContainer = "container:shortest_way.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7D787EB61EDEFF57003BBD98"
-            BuildableName = "nonlinear_structure"
-            BlueprintName = "nonlinear_structure"
-            ReferencedContainer = "container:nonlinear_structure.xcodeproj">
+            BlueprintIdentifier = "7D0364A11EE02867009E5051"
+            BuildableName = "shortest_way"
+            BlueprintName = "shortest_way"
+            ReferencedContainer = "container:shortest_way.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

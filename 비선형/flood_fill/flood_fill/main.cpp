@@ -9,8 +9,11 @@
 #include <iostream>
 #include <stdio.h>
 #include <algorithm>
+#include <queue> //너비우선
 
+struct VERTEX{ int a, b;}; //너비우선
 int n, A[101][101],cnt,Size[101];
+int dx[4]={1,0,-1,0},dy[4]={0,1,0,-1};
 
 //flood_fill 알고리즘(지뢰찾기, 뿌요뿌요 등 게임에 많이 활용)
 
@@ -35,6 +38,23 @@ void dfs(int a, int b, int c)
     if(safe(a,b-1)&&A[a][b-1]==1)
         dfs(a,b-1,c);
 }
+
+void bfs(int a, int b, int c)
+{
+    std::queue<VERTEX> Q;
+    Q.push( (VERTEX){a,b}),A[a][b]=c;
+    while(!Q.empty())
+    {
+        VERTEX curr = Q.front(); Q.pop();
+        for(int i=0;i<4;i++)
+            if(safe(curr.a+dx[i],curr.b+dy[i])&& A[curr.a+dx[i]][curr.b+dy[i]]==1)
+            {
+                A[curr.a+dx[i]][curr.b+dy[i]]=c;
+                Q.push((VERTEX){curr.a+dx[i],curr.b+dy[i]});
+            }
+    }
+}
+
 void solve()
 {
     for(int i=0;i<n;i++)
@@ -68,4 +88,5 @@ int main() {
     input();
     solve();
     output();
+    return 0;
 }
