@@ -133,9 +133,57 @@ void q16(){
     solve16(0,0);
     printf("%d",ans);
 }
+
+/*
+ 경찰차
+ 도로 사이의 거리는 모두 1, 동서방향 도로(n)와 남북방향 도로(n)가 교차하는 교차로의 위치는 두 도로의 번호 쌍으로 나타난다.
+ 경찰차1(1,1) 경찰차2(n,n) 처리할 사건이 있으면 발생한 위치의 두 경찰차 중 한대에 알려주고 가장빠른길로가서 처리
+ 처리해야할 사건은 항상 교차로에서 발생한다.
+ 즉, 처리해야할 사건(교차로)들이 순서대로 주어질 대, 두 대의 경찰차가 이동하는 거리의 합을 최소화 하는 프로그램을 작성해라.
+ */
+// 실제로 경찰차가 위치할 수 있는 가능성 w+1번 경찰차 초기위치 + 2번경찰차 초기위치 =  w+2
+
+// E 각사건의 위치 저장
+int E[1010][2], n23,m23, ans23 = 987654321;
+
+int min(int a, int b)
+{
+    return a>b? b:a;
+}
+int abs(int a)
+{
+    return a>0? a:-a;
+}
+
+int dis(int a,int b)
+{
+    return abs(E[a][0]-E[b][0])+abs(E[a][1]-E[b][1]);
+}
+//max(a,b)번 사건까지 처리하면서 d만큼 이동한 후, 1번 경찰차는 a사건 위치에, 2번경찰차는 b사건 위치에 있는 상태
+//0<=a,b<w+2, 다음사건= max(a,b)+1
+void solve23(int a, int b, int d)
+{
+    int next=(a>b? a:b)+1;
+    if(next>=m23+2)
+    {
+        if(d<ans23)ans23=d;
+        return;
+    }
+    solve23(next,b,d+dis(a,next));
+    solve23(a,next,d+dis(b,next));
+}
+void q23(){
+    scanf("%d%d",&n23,&m23);
+    E[0][0]=E[0][1]=1; // 1번경찰차
+    E[1][0]=E[1][1]=n23; // 2번경찰차
+    for(int i=2;i<m23+2;i++)
+        scanf("%d%d",&E[i][0],&E[i][1]);
+    solve23(0,1,0);
+    printf("%d",ans23);
+}
 int main() {
     
-    q10();
+    q23();
     
     return 0;
 }
