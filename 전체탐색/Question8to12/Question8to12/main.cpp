@@ -62,9 +62,80 @@ void q8()
     printf("%d",temp.cnt);
 }
 
+//minimum sum(S)
+int m[11][11];
+int col_check[11];
+int n,min_sol=0x7fffffff;
+
+void input(void)
+{
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+            scanf("%d",&m[i][j]);
+    
+}
+void solve10(int row,int score)
+{
+    if(row==n)
+    {
+        if(score<min_sol)
+            min_sol=score;
+        return;
+    }
+    for(int i=0;i<n;i++)
+    {
+        if(col_check[i]==0)
+        {
+            col_check[i]=1;
+            solve10(row+1,score+m[row][i]);
+            col_check[i]=0;
+        }
+    }
+    return;
+}
+void q10(){
+    input();
+    solve10(0, 0);
+    printf("%d",min_sol);
+}
+
+// 거스름돈 (s)
+// 거스름돈에 사용될 동전의 수 최소화
+int m16,n16,coin[10],ans = 987654321;
+
+// d개의 동전으로 mon원을 사용한 상태
+void solve16(int mon,int d){
+    if(mon>m16) return;
+    if(mon==m16)
+    {
+        if(d<ans)ans = d;
+        return;
+    }
+    for(int i=0;i<n;i++)
+        solve16(mon+coin[i],d+i);
+}
+//k번째 이하의 동전을 cnt개 사용하여  mon원을 거슬러 준 상태.
+void solve16_(int mon,int k, int cnt){
+    if(k==n || mon> m16 ) return;
+    if(mon==m16)
+    {
+        if(ans>cnt)ans = cnt;
+        return;
+    }
+    for(int i=0;mon+coin[k]*i<=m16;i++)
+        solve16_(mon+coin[k]*i,k+i,cnt+i);
+}
+void q16(){
+    scanf("%d %d",&m16,&n16);
+    for(int i=0;i<n;i++)
+        scanf("%d",coin+i);
+    solve16(0,0);
+    printf("%d",ans);
+}
 int main() {
     
-    q8();
+    q10();
     
     return 0;
 }
