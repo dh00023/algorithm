@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include <cstdio>
+#include <string>
 using namespace std;
 
 //두 수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
@@ -332,8 +332,11 @@ void star11(){
         printf("\n");
     }
 }
+
+
 int main(int argc, const char * argv[]) {
     // insert code here...
-    star11();
+    //star11();a
+    
     return 0;
 }

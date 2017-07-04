@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <stack>
+#include <deque>
 using namespace std;
 
 /*
@@ -85,7 +86,7 @@ void stick(){
  초기에 편집기에 입력되어 있는 문자열이 주어지고, 그 이후 입력한 명령어가 차례로 주어졌을 때, 모든 명령어를 수행하고 난 후 편집기에 입력되어 있는 문자열을 구하는 프로그램을 작성하시오. 단, 명령어가 수행되기 전에 커서는 문장의 맨 뒤에 위치하고 있다고 한다.
  */
 char a[600000];
-int main() {
+void editor(){
     scanf("%s",a);
     stack<char> left, right;
     int n = strlen(a);
@@ -126,5 +127,51 @@ int main() {
         right.pop();
     }
     printf("\n");
+}
+void deq(){
+    int n;
+    scanf("%d",&n);
+    
+    deque<int> dq;
+    
+    while(n--){
+        string s;
+        cin >> s;
+        if(s=="push_front"){
+            int x;
+            scanf("%d",&x);
+            dq.push_front(x);
+        }else if(s=="push_back"){
+            int x;
+            scanf("%d",&x);
+            dq.push_back(x);
+        }else if(s=="pop_front"){
+            if(!dq.empty()){
+                printf("%d",dq.front());
+                dq.pop_front();
+            }else printf("%d",-1);
+        }else if(s=="pop_back"){
+            if(!dq.empty()){
+                printf("%d",dq.back());
+                dq.pop_back();
+            }else printf("%d",-1);
+        }else if(s=="size"){
+            printf("%ld", dq.size());
+        }else if(s=="empty"){
+            if(dq.empty()){
+                printf("%d",1);
+            }else{
+                printf("%d",0);
+            }
+        }else if (s=="front"){
+            printf("%d",dq.front());
+        }else if (s=="back"){
+            printf("%d",dq.back());
+        }
+    }
+}
+
+int main() {
+    deq();
     return 0;
 }
