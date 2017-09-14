@@ -27,7 +27,7 @@ void star2(){
     }
 }
 // 첫째 줄에는 별 N개, 둘째 줄에는 별 N-1개, ..., N번째 줄에는 별 1개를 찍는 문제
-void star3(){
+void star03(){
     int N;
     scanf("%d",&N);
     for(int i=1;i<=N;i++){
@@ -51,7 +51,7 @@ void star4(){
     }
 }
 // 첫째 줄에는 별 1개, 둘째 줄에는 별 3개, ..., N번째 줄에는 별 2*N-1개를 찍는 문제 별은 가운데를 기준으로 대칭이어야 한다.
-void star5(){
+void star04(){
     int n;
     scanf("%d",&n);
     for(int i=1;i<=n;i++){
@@ -64,7 +64,7 @@ void star5(){
 }
 // 첫째 줄에는 별 1개, 둘째 줄에는 별 3개, ..., N번째 줄에는 별 2*N-1개를 찍는 문제 별은 가운데를 기준으로 대칭이어야 한다.
 // 다이아온드모양
-void star7(){
+void star05(){
     int n;
     scanf("%d",&n);
     for(int i=1;i<=n;i++){
@@ -82,7 +82,7 @@ void star7(){
         printf("\n");
     }
 }
-void star8(){
+void star07(){
     int n;
     scanf("%d",&n);
     for(int i=n-1;i>=1;i--){
@@ -100,7 +100,7 @@ void star8(){
         printf("\n");
     }
 }
-void star9(){
+void star08(){
     int n;
     scanf("%d",&n);
     for(int i=n;i>1;i--){
@@ -119,7 +119,7 @@ void star9(){
     }
     
 }
-void star12(){
+void star09(){
     int n;
     scanf("%d",&n);
     for(int i=1;i<=n;i++){
@@ -137,7 +137,7 @@ void star12(){
         printf("\n");
     }
 }
-void star16(){
+void star12(){
     int n;
     scanf("%d",&n);
     for(int i=1;i<=n;i++){
@@ -148,7 +148,7 @@ void star16(){
         printf("\n");
     }
 }
-void star17(){
+void star16(){
     int n;
     scanf("%d",&n);
     for(int i=1;i<=n;i++){
@@ -166,6 +166,23 @@ void star17(){
     }
 }
 
+void star17(){
+    int n;
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n-i;j++){
+            printf(" ");
+        }
+        for(int t=1;t<=2*i-1;t++){
+            if(t<=1 || t>=2*i-1 || i==n){
+                printf("*");
+            }else{
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+}
 int main(int argc, const char * argv[]) {
     // insert code here...
     //star11();
