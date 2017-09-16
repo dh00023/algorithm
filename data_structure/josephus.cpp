@@ -5,8 +5,13 @@
  
  N과 M이 주어지면 (N,M)-조세퍼스 순열을 구하는 프로그램을 작성하시오.
  */
+#include <iostream>
+#include <string>
+#include <queue>
+using namespace std;
 
-void jose(){
+
+int main(){
     int n,m;
     scanf("%d%d",&n,&m);
     
