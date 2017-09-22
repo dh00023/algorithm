@@ -12,7 +12,6 @@ int d[10001];
 
 
 int main() {
-    
     int n;
     scanf("%d",&n);
     d[0]=1,d[1]=1;
