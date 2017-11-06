@@ -1,7 +1,3 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
 /*
  강남역에서 붕어빵 장사를 하고 있는 해빈이는 지금 붕어빵이 N개 남았다.
  
@@ -22,21 +18,25 @@ using namespace std;
  둘째 줄에는 Pi가 P1부터 PN까지 순서대로 주어진다. (1 ≤ Pi ≤ 10,000)
 */
 
-//Bottomup
+//Bottom-up
 
-int main() {
-    int n;
-    cin >> n;
-    vector<int> a(n+1);
-    for (int i=1; i<=n; i++) {
-        cin >> a[i];
+#include <iostream>
+using namespace std;
+
+int d[10001];//붕어빵 n개를 팔아서 얻을 수 있는 최대수익
+int p[10001];
+int main(){
+    int n;//붕어빵의 수
+    scanf("%d",&n);
+    
+    for(int i=1;i<=n;i++){
+        scanf("%d",&p[i]);
     }
-    vector<int> d(n+1);
-    for (int i=1; i<=n; i++) {
-        for (int j=1; j<=i; j++) {
-            d[i] = max(d[i],d[i-j]+a[j]);
+    
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=i;j++){
+            d[i]=max(d[i],d[i-j]+p[j]);
         }
     }
-    cout << d[n] << '\n';
-    return 0;
+    cout<<d[n];
 }
